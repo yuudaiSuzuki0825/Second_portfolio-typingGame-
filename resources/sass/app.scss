@@ -1,0 +1,309 @@
+@charset "utf-8";
+
+html {
+    // ここで100%と指定し，各タグではremを使ってfont-sizeの調整を行うこと。
+    font-size: 100%;
+    color: #323339;
+}
+
+body {
+    // コーディングしやすくするために行間を1にしておいた。
+    line-height: 1;
+    height: 100vh;
+    background-image: url(../img/フリー素材_イタリア_山脈.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+a {
+    text-decoration: none;
+    color: #dfe2d2;
+}
+
+ul {
+    // liの左点の削除。
+    list-style: none;
+}
+
+header {
+    // ヘッダーの背景色を指定。
+    background-color: #f26968;
+}
+
+header nav .wrapper {
+    // 最大幅を指定している。これ以上大きくならない。
+    width: 1400px;
+    // ウィンドウ幅に対して95%分の範囲が横幅になる。
+    // widthで最大幅，max-widthで最大％を指定することで，
+    // 例えばウィンドウ幅の95%分の長さが1400pxを超えた場合，横幅は1400pxとなり超過分はmarginになる。
+    // 例えばウィンドウ幅の95%分の長さが1400pxを下回る場合，その95%分の値が横幅になる。
+    max-width: 95%;
+    // 中央寄せ。
+    margin: 0 auto;
+    // フレックス。
+    display: flex;
+}
+
+header nav .wrapper h1 {
+    // 行間の指定。サイトメニューの側もこれに合う形になる。
+    line-height: 50px;
+}
+
+header nav .wrapper .headerSiteMenu {
+    // marginのleftをautoにしつつ，rightを0にすると取り得る全ての余白がmargin-leftに割り振られる。
+    margin-left: auto;
+}
+
+header nav .wrapper .headerSiteMenu ul {
+    // フレックス。
+    display: flex;
+    // 行間の指定。h1と同じ値。align-itemsを有効にするためでもある。
+    line-height: 50px;
+    // サイトメニューの各項目を縦軸に対して中央揃えにしている。
+    align-items: center;
+}
+
+// 隣接結合。サイドメニューの各項目の余白を作成している。
+header nav .wrapper .headerSiteMenu ul li + li {
+    margin-left: 15px;
+}
+
+header nav .wrapper .headerSiteMenu ul li i {
+    margin-right: 5px;
+}
+
+main .container {
+    // ポジショニング。
+    position: absolute;
+    top: 150px;
+    // widthを絶対値, leftおよびrightを0にした上で，marginの左右をautoにすると中央寄せになる。
+    left: 0;
+    right: 0;
+    width: 420px;
+    margin: 0 auto;
+    // 内側の余白指定。
+    padding: 10px 50px;
+    // 色指定。
+    background: #dfe2d2;
+    // 角丸指定。
+    border-radius: 10px;
+    // 影指定。
+    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+}
+
+main .container h2 {
+    // 外側の余白指定。
+    margin: 10px 0 15px;
+    // テキストを中央寄せ。
+    text-align: center;
+}
+
+main .container div form div input {
+    // 内側と外側の余白指定。
+    border-bottom: 1px solid #323339;
+    margin-bottom: 15px;
+    // 親要素一杯まで横幅を占有。
+    width: 100%;
+}
+
+main .container div form div {
+    // ポジショニングに必要。
+    position: relative;
+}
+
+main .container div form div .registerButton,
+main .container div form div .loginButton {
+    // 横幅指定。
+    width: 49px;
+    // margin-rightが0なので，占有できる全ての余白がmargin-leftになる。
+    margin-left: auto;
+    // 色指定。
+    background-color: #6cbf84;
+    // 内側の余白指定。
+    padding: 8px;
+    // 角丸指定。
+    border-radius: 4px;
+}
+
+main .container div form div .loginButton {
+    // 横幅指定。
+    width: 80px;
+}
+
+main .container div form div .loginButton a {
+    // ポジショニング。ログインボタンからの絶対的な位置指定。
+    position: absolute;
+    left: -221px;
+    top: 0;
+    // 色指定。
+    background-color: #dfe2d2;
+    color: rgb(61, 61, 255);
+    // 下線。
+    border-bottom: 1px solid rgb(61, 61, 255);
+}
+
+main .container div form div .registerButton button,
+main .container div form div .loginButton button {
+    // 色指定。
+    color: #dfe2d2;
+}
+
+// サイドパネルのコーディングここから。
+#checkbox {
+    display: none;
+}
+
+#checkboxLabel {
+    position: absolute;
+    top: 200px;
+    right: 0;
+    transition: all 0.5s;
+    background: #dfe2d2;
+    color: #323339;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+}
+
+#checkboxLabel i {
+    font-size: 2rem;
+    line-height: 40px;
+    color: #dfe2d2;
+    color: #323339;
+    transition: all 0.5s;
+}
+
+#sideBar {
+    background-color: #dfe2d2;
+    position: fixed;
+    top: 100px;
+    right: -400px;
+    width: 400px;
+    height: 400px;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    /* イージング。 */
+    transition: all 0.5s;
+}
+
+#checkbox:checked ~ #sideBar {
+    right: 0;
+}
+
+#checkbox:checked ~ #checkboxLabel {
+    right: 400px;
+}
+
+#checkbox:checked ~ #checkboxLabel i {
+    transform: rotate(180deg);
+}
+// サイドパネルのコーディングここまで。
+
+// サイドパネル（中身）のコーディングここから。
+#sideBar form {
+    padding: 10px 50px;
+}
+#sideBar h2 {
+    margin: 10px 0 15px;
+    text-align: center;
+}
+#sideBar input,
+#sideBar textarea {
+    margin-bottom: 15px;
+    line-height: 1.3;
+    width: 100%;
+    border-bottom: 1px solid #323339;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+#sideBar input {
+    display: block;
+}
+#sideBar #createButton {
+    width: 48px;
+    margin-left: auto;
+}
+#sideBar #createButton button {
+    display: inline-block;
+    line-height: 32px;
+    padding: 0 8px;
+    background-color: #6cbf84;
+    color: #dfe2d2;
+    border-radius: 4px;
+}
+// サイドパネル（中身）のコーディングここまで。
+
+.typingTable {
+    background-color: #dfe2d2;
+    border: #323339;
+    width: 70%;
+    height: 400px;
+    margin: 50px 0 0 50px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+}
+
+.typingTable h2,
+.typingTable h3 {
+    text-align: center;
+}
+
+.typingTable h2 {
+    font-size: 2rem;
+    padding-top: 25px;
+}
+
+.typingTable h3 {
+    color: #f26968;
+    margin-top: 10px;
+    font-size: 1.875rem;
+}
+
+.typingTable ul {
+    text-align: center;
+    margin: 15px 20% 0;
+    background-color: #f2ad9f;
+    border-radius: 4px;
+}
+
+.typingTable ul li + li {
+    margin-top: 10px;
+}
+
+.typingTable #startButtonParent {
+    width: 150px;
+    line-height: 30px;
+    margin: 15px auto 0;
+    padding: 5px 20px;
+    background-color: #6cbf84;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.typingTable #startButtonParent.none {
+    opacity: 0.3;
+}
+
+.typingTable #startButtonParent #startButton {
+    color: #dfe2d2;
+    font-size: 1.5rem;
+}
+
+.typingTable #startButtonParent #startButton i {
+    padding-right: 5px;
+}
+
+footer p {
+    position: absolute;
+    width: 120px;
+    right: 0;
+    left: 0;
+    bottom: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    font-weight: bold;
+    color: #ffffff;
+}
