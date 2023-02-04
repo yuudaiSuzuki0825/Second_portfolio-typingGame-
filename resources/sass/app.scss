@@ -238,7 +238,7 @@ main .container div form div .loginButton button {
     background-color: #dfe2d2;
     border: #323339;
     width: 58%;
-    height: 280px;
+    height: 300px;
     margin: 50px 0 0 50px;
     border-radius: 4px;
     box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
@@ -294,6 +294,48 @@ main .container div form div .loginButton button {
 
 .typingTable #startButtonParent #startButton i {
     padding-right: 5px;
+}
+
+#typingModalWindow {
+    position: fixed; // ページ全体を基準にポジショニング。
+    top: 200px;
+    left: 0;
+    right: 0;
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    z-index: 100;
+    background-color: #dfe2d2;
+    color: #323339;
+    border-radius: 4px;
+}
+#typingModalWindow.hidden {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+#typingModalWindow p {
+    text-decoration: underline;
+    font-size: 1.5rem;
+    text-align: center;
+}
+#typingModalWindow #target {
+    margin-top: 20px;
+}
+
+#mask {
+    // 背景色の指定。若干透明にしている。
+    background: rgba(0, 0, 0, 0.8);
+    // positionをfixedに，topとleft,right,bottomを全て0にすることでマスク部分を作っている。
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 50;
+}
+#mask.hidden {
+    display: none;
 }
 
 footer p {
