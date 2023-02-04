@@ -53,17 +53,20 @@
             <h3><i class="fa-solid fa-triangle-exclamation"></i>caution<i class="fa-solid fa-triangle-exclamation"></i></h3>
             <ul>
                 <li><i class="fa-solid fa-comment"></i>タイトルと本文が表示されます。本文をタイプして下さい。</li>
-                <li><i class="fa-solid fa-comment"></i>再スタートする際は、ページをリロードして下さい。</li>
-                <li><i class="fa-solid fa-comment"></i></i>文書表示欄にてチェックが付いているか確認を。</li>
+                <li><i class="fa-solid fa-comment"></i>startを押すと直ぐに始まります。</li>
+                <li><i class="fa-solid fa-comment"></i></i>再startする際は、ページをリロードして下さい。</li>
             </ul>
             <div id="startButtonParent">
                 <button id="startButton"><i class="fa-solid fa-keyboard"></i>start</button>
             </div>
-            <div>
-                <p id="targetTitle"></p>
-                <p id="target"></p>
-            </div>
         </div>
+        <div id="typingModalWindow" class="hidden">
+            <p id="targetTitle"></p>
+            <p id="target"></p>
+        </div>
+
+        <!-- マスク部分。モーダルウィンドウで必要。 -->
+        <div id="mask" class="hidden"></div>
 
         {{-- 以下はグローバル定義して別ファイル（app.js）で扱うために記述。タイピングに使う文書をPHPからJavaScriptへ渡している。 --}}
         <script>

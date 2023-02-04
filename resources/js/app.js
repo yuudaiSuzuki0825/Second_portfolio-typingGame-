@@ -1,6 +1,18 @@
 "use strict";
 
 {
+    // ==================== //
+    /* モーダルウィンドウ。 */
+    // ==================== //
+
+    /* DOM操作。 */
+    const typingModalWindow = document.getElementById("typingModalWindow");
+    const mask = document.getElementById("mask");
+
+    // ==================== //
+    /* タイピングゲーム。 */
+    // ==================== //
+
     // home.blade.phpから$textsを受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
     const texts = [...Laravel.texts];
     // 配列の初期化。
@@ -36,12 +48,19 @@
     const target = document.getElementById("target");
     const targetTitle = document.getElementById("targetTitle");
     const startButtonParent = document.getElementById("startButtonParent");
+    const finishedMsg = document.createElement("p");
+    finishedMsg.textContent = "finished!!";
+    finishedMsg.style.paddingTop = "20px";
 
     startButtonParent.addEventListener("click", () => {
         if (playing) {
             return;
         }
         startButtonParent.classList.add("none");
+        // モーダルウィンドウの実装。
+        typingModalWindow.classList.remove("hidden");
+        mask.classList.remove("hidden");
+
         playing = true;
         setProblem();
         console.log("hoge1");
@@ -65,8 +84,9 @@
                     startButtonParent.classList.remove("none");
                     window.location.reload();
                 }, 2000);
-                target.textContent = "クリア";
+                target.textContent = "";
                 targetTitle.textContent = "";
+                target.previousElementSibling.appendChild(finishedMsg);
                 return;
             }
 
