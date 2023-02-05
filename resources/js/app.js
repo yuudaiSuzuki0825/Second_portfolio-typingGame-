@@ -2,7 +2,7 @@
 
 {
     // ==================== //
-    /* モーダルウィンドウ。 */
+    /* モーダルウィンドウ（タイピングゲーム内に仕込んだ）。 */
     // ==================== //
 
     /* DOM操作。 */
@@ -13,16 +13,17 @@
     /* タイピングゲーム。 */
     // ==================== //
 
-    // home.blade.phpから$textsを受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
-    const texts = [...Laravel.texts];
+    // home.blade.phpから$texts2を受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
+    let texts2 = [...Laravel.texts2];
     // 配列の初期化。
     let problems = [];
     // textsの個数分ループ。オブジェクトリテラルを利用してタイトルと本文のみ抽出している。
-    for (let i = 0; i < texts.length; i++) {
-        const title = texts[i].title;
-        const body = texts[i].body;
+    for (let i = 0; i < texts2.length; i++) {
+        const title = texts2[i].title;
+        const body = texts2[i].body;
         problems[i] = { title, body };
     }
+    // console.log(problems);
     let problemBodys = [];
 
     // setProblemメソッドの定義。
@@ -67,6 +68,11 @@
     });
 
     document.addEventListener("keydown", (e) => {
+        // startボタンが押下されていない場合には，以下の処理を実行するわけにはいかないので，早期リターンする必要がある。
+        if (!playing) {
+            return;
+        }
+
         if (e.key !== problem[loc]) {
             return;
         }
@@ -93,5 +99,20 @@
             console.log("hoge3");
             setProblem();
         }
+    });
+
+    // ==================== //
+    /* アコーディオン。 */
+    // ==================== //
+
+    /* DOM操作。 */
+    const trs = document.querySelectorAll(".tr");
+    trs.forEach((tr) => {
+        let children = tr.children;
+        console.log(children);
+        children[3].addEventListener("click", () => {
+            console.log(tr.nextElementSibling);
+            tr.nextElementSibling.classList.toggle("open");
+        });
     });
 }

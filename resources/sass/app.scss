@@ -322,6 +322,15 @@ main .container div form div .loginButton button {
 #typingModalWindow #target {
     margin-top: 20px;
 }
+table {
+    color: #dfe2d2;
+}
+#tableTargetBody {
+    display: none;
+}
+#tableTargetBody.open {
+    display: block;
+}
 
 #mask {
     // 背景色の指定。若干透明にしている。
