@@ -9,10 +9,6 @@
 
     <title>onlymytyping</title>
 
-    <!-- Scripts -->
-    <!-- bootstrapで使用。今回はbootstrapを使用しない。 -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

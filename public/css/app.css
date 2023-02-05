@@ -292,6 +292,18 @@ main .container div form div .loginButton button {
   margin-top: 20px;
 }
 
+table {
+  color: #dfe2d2;
+}
+
+#tableTargetBody {
+  display: none;
+}
+
+#tableTargetBody.open {
+  display: block;
+}
+
 #mask {
   background: rgba(0, 0, 0, 0.8);
   position: fixed;

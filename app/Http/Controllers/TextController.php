@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class TextController extends Controller
 {
 
+    private $checked = "checked";
+
     /**
      * Store a newly created resource in storage.
      *
@@ -79,6 +81,22 @@ class TextController extends Controller
     {
         $text->delete();
 
+        return redirect('/');
+    }
+
+    public function checked($id)
+    {
+        $text = Auth()->user()->texts()->find($id);
+        $text->checked = $this->checked;
+        $text->save();
+        return redirect('/');
+    }
+
+    public function unchecked($id)
+    {
+        $text = Auth()->user()->texts()->find($id);
+        $text->checked = null;
+        $text->save();
         return redirect('/');
     }
 }
