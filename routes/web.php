@@ -25,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/text', 'App\Http\Controllers\TextController', ['only' => ['store', 'destroy']]);
 Route::patch('text/{id}', [TextController::class, 'checked'])->name('text.checked');
 Route::patch('text/{id}/unchecked', [TextController::class, 'unchecked'])->name('text.unchecked');
+Route::get('text/deleteList', [TextController::class, 'deleteList'])->name('text.deleteList');
+Route::patch('text/deleteList/{trashed_text}', [TextController::class, 'restore'])->name('text.restore');

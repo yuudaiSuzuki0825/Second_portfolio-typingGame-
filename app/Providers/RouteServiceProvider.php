@@ -48,9 +48,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        // Route::bind('trashed_text', function ($id) {
-        //     return \App\Models\Text::onlyTrashed()->find($id);
-        // });
+        // ソフトデリートに関連。
+        Route::bind('trashed_text', function ($id) {
+            return \App\Models\Text::onlyTrashed()->find($id);
+        });
     }
 
     /**

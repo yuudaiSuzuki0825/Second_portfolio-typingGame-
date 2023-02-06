@@ -99,4 +99,20 @@ class TextController extends Controller
         $text->save();
         return redirect('/');
     }
+
+    public function deleteList()
+    {
+        $user = Auth()->user();
+        $texts = $user->texts()->onlyTrashed()->get();
+        return view('deleteList', [
+            'texts' => $texts
+        ]);
+    }
+
+    public function restore(Text $text)
+    {
+        $user = Auth()->user();
+        $user->texts()->onlyTrashed()->where('id', $text->id)->restore();
+        return redirect('/text/deleteList');
+    }
 }
