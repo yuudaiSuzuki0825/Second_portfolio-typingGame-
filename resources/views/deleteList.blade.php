@@ -50,6 +50,11 @@
 
         @if (count($texts) > 0)
             <table class="List">
+                <thead>
+                    <tr>
+                        <td><i class="fa-solid fa-bars-staggered"></i> 最近削除した項目</td>
+                    </tr>
+                </thead>
                 @foreach ($texts as $text)
                 <tbody>
                     <tr class="tr">
@@ -70,6 +75,8 @@
                 </tbody>
                 @endforeach
             </table>
+        @else
+        <p>最近削除した文書はありません。</p>
         @endif
 
         <!-- マスク部分。モーダルウィンドウで必要。 -->

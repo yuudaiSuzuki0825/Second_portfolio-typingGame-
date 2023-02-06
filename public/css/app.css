@@ -197,67 +197,38 @@ main .container div form div .loginButton button {
 }
 
 .typingTable {
-  background-color: #dfe2d2;
-  border: #323339;
-  width: 58%;
-  height: 300px;
-  margin: 50px 0 0 50px;
+  background-color: #323339;
+  color: #dfe2d2;
+  width: 50%;
+  margin: 50px 0 50px 50px;
+  padding: 0 20px;
   border-radius: 4px;
   box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
-}
-
-.typingTable h2,
-.typingTable h3 {
-  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .typingTable h2 {
   font-size: 2rem;
-  padding-top: 25px;
+  line-height: 50px;
 }
 
-.typingTable h3 {
-  color: #f26968;
-  margin-top: 10px;
-  font-size: 1.875rem;
+#startButtonParent {
+  margin-left: auto;
 }
 
-.typingTable ul {
-  text-align: center;
-  margin: 15px 20% 0;
-  background-color: #f2ad9f;
-  border-radius: 4px;
-}
-
-.typingTable ul li + li {
-  margin-top: 10px;
-}
-
-.typingTable #startButtonParent {
-  width: 150px;
-  line-height: 30px;
-  margin: 15px auto 0;
-  padding: 5px 20px;
-  background-color: #6cbf84;
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-
-.typingTable #startButtonParent.none {
-  opacity: 0.3;
-}
-
-.typingTable #startButtonParent #startButton {
+#startButton,
+#questionButton,
+#deleteListButton,
+#topPageButton {
+  font-size: 2rem;
   color: #dfe2d2;
-  font-size: 1.5rem;
 }
 
-.typingTable #startButtonParent #startButton i {
-  padding-right: 5px;
+#questionButton,
+#deleteListButton,
+#topPageButton {
+  padding-left: 10px;
 }
 
 #typingModalWindow {
@@ -269,8 +240,8 @@ main .container div form div .loginButton button {
   margin: 0 auto;
   padding: 10px 20px;
   z-index: 100;
-  background-color: #dfe2d2;
-  color: #323339;
+  background-color: #323339;
+  color: #dfe2d2;
   border-radius: 4px;
 }
 
@@ -283,7 +254,6 @@ main .container div form div .loginButton button {
 }
 
 #typingModalWindow p {
-  text-decoration: underline;
   font-size: 1.5rem;
   text-align: center;
 }
@@ -306,10 +276,50 @@ table {
 
 .List {
   background-color: #323339;
+  color: #dfe2d2;
+  margin: 50px 0 50px 50px;
+  width: 50%;
+  padding: 10px 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+  font-size: 1.175rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+main .List thead tr {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+main .List tbody .tr {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+}
+
+main .List tbody .tr td:first-child {
+  margin-right: 5px;
+}
+
+main .List tbody .tr td:last-child {
+  margin-left: auto;
+}
+
+.List tbody #tableTargetBody {
+  padding: 5px;
+}
+
+#trashButton {
+  color: #dfe2d2;
 }
 
 #mask {
-  background: rgba(0, 0, 0, 0.8);
+  background: #dfe2d2;
+  opacity: 0.7;
   position: fixed;
   top: 0;
   bottom: 0;

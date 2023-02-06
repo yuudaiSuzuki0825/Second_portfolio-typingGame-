@@ -74,10 +74,6 @@
         @yield('content')
     </main>
 
-    <footer>
-        <p>onlymytyping</p>
-    </footer>
-
     <script src="https://kit.fontawesome.com/efd87fdfef.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app2.js') }}"></script>
 </body>
