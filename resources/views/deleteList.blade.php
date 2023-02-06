@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
     @guest
@@ -48,36 +48,19 @@
             <p id="successMeg">{{ session('ok') }}</p>
         @endif
 
-        <div class="typingTable">
-            <h2>Let's Challenge!!</h2>
-            <h3><i class="fa-solid fa-triangle-exclamation"></i>caution<i class="fa-solid fa-triangle-exclamation"></i></h3>
-            <ul>
-                <li><i class="fa-solid fa-comment"></i>タイトルと本文が表示されます。本文をタイプして下さい。</li>
-                <li><i class="fa-solid fa-comment"></i></i>??????????????????????????</li>
-                <li><i class="fa-solid fa-comment"></i></i>?????????????????????????????</li>
-            </ul>
-            <div id="startButtonParent">
-                <button id="startButton"><i class="fa-solid fa-keyboard"></i>start</button>
-            </div>
-        </div>
-        <div id="typingModalWindow" class="hidden">
-            <p id="targetTitle"></p>
-            <p id="target"></p>
-        </div>
-
         @if (count($texts) > 0)
             <table class="List">
                 @foreach ($texts as $text)
                 <tbody>
                     <tr class="tr">
                         <td>
-                            <form action="{{ route('text.destroy', $text) }}" method="post">
+                            <form action="{{ route('text.restore', $text->id) }}" method="post">
                                 @csrf
-                                @method('DELETE')
+                                @method('patch')
                                 <button type="submit"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </td>
-                        <td></td>
+                        <td><i class="fa-solid fa-trash"></i></td>
                         <td>{{ $text->title }}</td>
                         <td><i class="fa-solid fa-chevron-down"></i></td>
                     </tr>
@@ -87,17 +70,9 @@
                 </tbody>
                 @endforeach
             </table>
-        @else
-            <p>文書がありません。</p>
         @endif
 
         <!-- マスク部分。モーダルウィンドウで必要。 -->
         <div id="mask" class="hidden"></div>
-
-        {{-- 以下はグローバル定義して別ファイル（app.js）で扱うために記述。タイピングに使う文書をPHPからJavaScriptへ渡している。 --}}
-        <script>
-            window.Laravel = {};
-            window.Laravel.texts = @json($texts);
-        </script>
     @endguest
 @endsection

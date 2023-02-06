@@ -304,6 +304,10 @@ table {
   display: block;
 }
 
+.List {
+  background-color: #323339;
+}
+
 #mask {
   background: rgba(0, 0, 0, 0.8);
   position: fixed;

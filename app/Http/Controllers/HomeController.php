@@ -28,17 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user =  Auth()->user();
+        $user = Auth()->user();
         $texts = $user->texts;
-        $texts2 = $user->texts->filter(function($text) {
-            return $text->checked === "checked";
-        });
-        // if (count($texts2) == 0) {
-        //     $texts2 = $user->texts;
-        // }
         return view('home', [
             'texts' => $texts,
-            'texts2' => $texts2,
         ]);
     }
 }

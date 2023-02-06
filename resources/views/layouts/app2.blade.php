@@ -79,6 +79,6 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/efd87fdfef.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app2.js') }}"></script>
 </body>
 </html>
