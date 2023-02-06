@@ -50,14 +50,17 @@
 
         <div class="typingTable">
             <h2>Let's Challenge!!</h2>
-            <h3><i class="fa-solid fa-triangle-exclamation"></i>caution<i class="fa-solid fa-triangle-exclamation"></i></h3>
-            <ul>
-                <li><i class="fa-solid fa-comment"></i>タイトルと本文が表示されます。本文をタイプして下さい。</li>
-                <li><i class="fa-solid fa-comment"></i></i>??????????????????????????</li>
-                <li><i class="fa-solid fa-comment"></i></i>?????????????????????????????</li>
-            </ul>
             <div id="startButtonParent">
-                <button id="startButton"><i class="fa-solid fa-keyboard"></i>start</button>
+                <button id="startButton"><i class="fa-regular fa-circle-play"></i></button>
+            </div>
+            <div>
+                <button id="questionButton"><i class="fa-regular fa-circle-question"></i></button>
+            </div>
+            <div>
+                <a id="deleteListButton" href="{{ route('text.deleteList') }}"><i class="fa-solid fa-bars-staggered"></i></a>
+            </div>
+            <div>
+                <a id="topPageButton" href="{{ route('home') }}"><i class="fa-solid fa-user"></i></a>
             </div>
         </div>
         <div id="typingModalWindow" class="hidden">
@@ -67,6 +70,11 @@
 
         @if (count($texts) > 0)
             <table class="List">
+                <thead>
+                    <tr>
+                        <td><i class="fa-solid fa-list"></i> 文書一覧</td>
+                    </tr>
+                </thead>
                 @foreach ($texts as $text)
                 <tbody>
                     <tr class="tr">
@@ -74,7 +82,7 @@
                             <form action="{{ route('text.destroy', $text) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                                <button type="submit"><i class="fa-solid fa-trash" id="trashButton"></i></button>
                             </form>
                         </td>
                         <td></td>

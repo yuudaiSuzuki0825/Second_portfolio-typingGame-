@@ -35,9 +35,10 @@
     // }
     // let problemBodys = [];
 
-    // setProblemメソッドの定義。
+    // setProblemメソッドの定義。tryとcatchで例外処理を行っている。もし受け取ったtextsが空（文書がない）だった場合はデフォルトの文書を代わりにタイプする仕様にした。
     function setProblem() {
         try {
+            // home.blade.phpから$textsを受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
             let texts = [...Laravel.texts];
             // // 配列の初期化。
             // let problems = [];
@@ -60,6 +61,8 @@
             loc = 0;
             num++;
         } catch (e) {
+            // 文書が1つもないときは以下の処理が実行される。
+            // 代替文書を作成し，セット。
             problems = [
                 {
                     title: "文書がありません",
@@ -100,12 +103,11 @@
         // num++;
     }
 
-    // 初期化。
+    // 初期化。以下はグローバル定義にする必要がある。
     let problem;
     let loc = 0;
     let num = 0;
     let playing = false;
-    let count;
     let problems = [];
 
     // // /* DOM操作。 */
