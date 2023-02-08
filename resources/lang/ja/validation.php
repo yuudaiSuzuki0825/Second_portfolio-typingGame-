@@ -22,7 +22,7 @@ return [
     'alpha_dash'           => ':attributeはアルファベットとダッシュ(-)及び下線(_)がご利用できます。',
     'alpha_num'            => ':attributeはアルファベット数字がご利用できます。',
     // 以下を追加。
-    'alpha_num_check' => ':attributeは半角英数字で入力してください',
+    'alpha_num_check' => ':attributeは半角英数字で入力してください。',
     'array'                => ':attributeは配列でなくてはなりません。',
     'before'               => ':attributeには、:dateより前の日付をご利用ください。',
     'before_or_equal'      => ':attributeには、:date以前の日付をご利用ください。',

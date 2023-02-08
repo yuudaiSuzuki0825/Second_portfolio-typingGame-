@@ -39,13 +39,15 @@
                 </div>
             </form>
         </aside>
-        @if ($errors)
-            @foreach ($errors->all() as $error)
-            <p id="errorMsg">{{ $error }}</p>
-            @endforeach
+        @if ($errors->any())
+            <ul id="errorMsg"><i class="fa-solid fa-triangle-exclamation"></i><br><br>Error!<br>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         @endif
-        @if (session('ok'))
-            <p id="successMeg">{{ session('ok') }}</p>
+        @if (session()->has('ok'))
+            <div id="successMeg"><i class="fa-regular fa-circle-check"></i><br><br>Good job!<br>{{ session('ok') }}</div>
         @endif
 
         <div class="typingTable">
@@ -96,7 +98,7 @@
                 @endforeach
             </table>
         @else
-            <p>文書がありません。</p>
+        <p class="zeroText">文書がありません。</p>
         @endif
 
         <!-- マスク部分。モーダルウィンドウで必要。 -->

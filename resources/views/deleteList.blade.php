@@ -25,15 +25,15 @@
             <h2>文書作成</h2>
             <form action="{{ route('text.store') }}" method="post">
                 @csrf
-                <div class="form-group">
+                <div>
                     <label for="title">タイトル</label>
                     <input type="text" name="title" id="title" placeholder="こちらは日本語入力ができます。">
                 </div>
-                <div class="form-group">
+                <div>
                     <label for="body">本文</label>
                     <textarea name="body" id="body" cols="30" rows="8" placeholder="半角英数字のみ受け付けます。コロンや半角スペースも受け付けません。"></textarea>
                 </div>
-                <div class="form-group" id="createButton">
+                <div id="createButton">
                     <button type="submit">作成
                     </button>
                 </div>
@@ -49,7 +49,7 @@
         @endif
 
         @if (count($texts) > 0)
-            <table class="List">
+            <table class="List trashedList">
                 <thead>
                     <tr>
                         <td><i class="fa-solid fa-bars-staggered"></i> 最近削除した項目</td>
@@ -62,10 +62,16 @@
                             <form action="{{ route('text.restore', $text->id) }}" method="post">
                                 @csrf
                                 @method('patch')
-                                <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                                <button type="submit"><i class="fa-solid fa-trash-arrow-up" id="restoreIcon"></i></button>
                             </form>
                         </td>
-                        <td><i class="fa-solid fa-trash"></i></td>
+                        <td>
+                            <form action="{{ route('text.forceDelete', $text->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit"><i class="fa-solid fa-trash" id="trashButton"></i></button>
+                            </form>
+                        </td>
                         <td>{{ $text->title }}</td>
                         <td><i class="fa-solid fa-chevron-down"></i></td>
                     </tr>
@@ -76,7 +82,7 @@
                 @endforeach
             </table>
         @else
-        <p>最近削除した文書はありません。</p>
+        <p class="zeroText">最近削除した文書はありません。</p>
         @endif
 
         <!-- マスク部分。モーダルウィンドウで必要。 -->
