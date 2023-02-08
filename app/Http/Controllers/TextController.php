@@ -115,4 +115,11 @@ class TextController extends Controller
         $user->texts()->onlyTrashed()->where('id', $text->id)->restore();
         return redirect('/text/deleteList');
     }
+
+    public function forceDelete(Text $text)
+    {
+        $user = Auth()->user();
+        $user->texts()->onlyTrashed()->where('id', $text->id)->forceDelete();
+        return redirect('/text/deleteList');
+    }
 }

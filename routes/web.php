@@ -27,3 +27,4 @@ Route::patch('text/{id}', [TextController::class, 'checked'])->name('text.checke
 Route::patch('text/{id}/unchecked', [TextController::class, 'unchecked'])->name('text.unchecked');
 Route::get('text/deleteList', [TextController::class, 'deleteList'])->name('text.deleteList');
 Route::patch('text/deleteList/{trashed_text}', [TextController::class, 'restore'])->name('text.restore');
+Route::delete('text/deleteList/{trashed_text}', [TextController::class, 'forceDelete'])->name('text.forceDelete');

@@ -144,7 +144,7 @@
 
         loc++;
 
-        target.textContent = "-".repeat(loc) + problem.substring(loc);
+        target.textContent = "".repeat(loc) + problem.substring(loc);
 
         if (loc === problem.length) {
             console.log(num);
@@ -178,6 +178,11 @@
         children[3].addEventListener("click", () => {
             console.log(tr.nextElementSibling);
             tr.nextElementSibling.classList.toggle("open");
+            tr.children[3].classList.toggle("open");
         });
     });
+
+    /* =================================================== */
+    // 「GoodJob」通知のアニメーション。
+    /* =================================================== */
 }

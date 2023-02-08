@@ -9,7 +9,8 @@ html {
 body {
     // コーディングしやすくするために行間を1にしておいた。
     line-height: 1;
-    height: 100vh;
+    // height: 100vh;が効かない場合（スクロールすると背景が切れる問題）の対処法↓
+    min-height: 100vh;
     background-image: url(../img/フリー素材_イタリア_山脈.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,6 +29,10 @@ ul {
 header {
     // ヘッダーの背景色を指定。
     background-color: #f26968;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 header nav .wrapper {
@@ -47,6 +52,7 @@ header nav .wrapper {
 header nav .wrapper h1 {
     // 行間の指定。サイトメニューの側もこれに合う形になる。
     line-height: 50px;
+    user-select: none;
 }
 
 header nav .wrapper .headerSiteMenu {
@@ -61,6 +67,7 @@ header nav .wrapper .headerSiteMenu ul {
     line-height: 50px;
     // サイトメニューの各項目を縦軸に対して中央揃えにしている。
     align-items: center;
+    user-select: none;
 }
 
 // 隣接結合。サイドメニューの各項目の余白を作成している。
@@ -154,7 +161,7 @@ main .container div form div .loginButton button {
 }
 
 #checkboxLabel {
-    position: absolute;
+    position: fixed;
     top: 200px;
     right: 0;
     transition: all 0.5s;
@@ -203,10 +210,12 @@ main .container div form div .loginButton button {
 // サイドパネル（中身）のコーディングここから。
 #sideBar form {
     padding: 10px 50px;
+    user-select: none;
 }
 #sideBar h2 {
     margin: 10px 0 15px;
     text-align: center;
+    user-select: none;
 }
 #sideBar input,
 #sideBar textarea {
@@ -234,11 +243,72 @@ main .container div form div .loginButton button {
 }
 // サイドパネル（中身）のコーディングここまで。
 
+// エラーメッセージやサクセスメッセージなど…
+main #errorMsg {
+    // ポジショニング。
+    position: absolute;
+    top: 20px;
+    // leftとrightを0に，widthを絶対値指定した上でmarginの左右をautoにすると，中央寄せになる。
+    left: 0;
+    right: 0;
+    // 横幅指定。
+    width: 500px;
+    // 内側の余白指定。
+    padding: 10px 10px;
+    // 中央寄せ。
+    margin: 0 auto;
+    // フォントサイズ指定。
+    font-size: 1.375rem;
+    // テキストを中央揃えにしている。
+    text-align: center;
+    // 色指定。
+    color: #fff;
+    background-color: #e74c3c;
+    // 角丸指定。
+    border-radius: 4px;
+    // 要素の重なりを一番上にしている。
+    z-index: 1000;
+}
+
+main #successMeg {
+    // ポジショニング。
+    position: absolute;
+    top: 20px;
+    // leftとrightを0に，widthを絶対値指定した上でmarginの左右をautoにすると，中央寄せになる。
+    left: 0;
+    right: 0;
+    // 横幅指定。
+    width: 300px;
+    // 内側の余白指定。
+    padding: 10px 10px;
+    // 中央寄せ。
+    margin: 0 auto;
+    // フォントサイズ指定。
+    font-size: 1.375rem;
+    // テキストを中央揃えにしている。
+    text-align: center;
+    // 色指定。
+    color: #fff;
+    background-color: #00a690;
+    // 角丸指定。
+    border-radius: 4px;
+    // 要素の重なりを一番上にしている。
+    z-index: 1000;
+    // イージング。
+    transition: all 0.3s;
+}
+main #successMsg.fadeOut {
+    // 完全透明にし，範囲選択を禁止にし，クリックできないようにしている。
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
 .typingTable {
     background-color: #323339;
     color: #dfe2d2;
     width: 50%;
-    margin: 50px 0 50px 50px;
+    margin: 100px 0 50px 50px;
     padding: 0 20px;
     border-radius: 4px;
     box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
@@ -249,6 +319,7 @@ main .container div form div .loginButton button {
 .typingTable h2 {
     font-size: 2rem;
     line-height: 50px;
+    user-select: none;
 }
 
 #startButtonParent {
@@ -288,7 +359,7 @@ main .container div form div .loginButton button {
     pointer-events: none;
 }
 #typingModalWindow p {
-    // text-decoration: underline;
+    user-select: none;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -297,12 +368,6 @@ main .container div form div .loginButton button {
 }
 table {
     color: #dfe2d2;
-}
-#tableTargetBody {
-    display: none;
-}
-#tableTargetBody.open {
-    display: block;
 }
 .List {
     background-color: #323339;
@@ -314,14 +379,16 @@ table {
     box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
     font-size: 1.175rem;
     user-select: none;
+    line-height: 1.2;
 }
-
+.List.trashedList {
+    margin-top: 100px;
+}
 main .List thead tr {
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
 }
-
 main .List tbody .tr {
     padding: 5px;
     // フレックスにして横並びにすることが重要。これを忘れない。
@@ -329,21 +396,48 @@ main .List tbody .tr {
     align-items: center;
     letter-spacing: 2px;
 }
-
 main .List tbody .tr td:first-child {
     margin-right: 5px;
 }
-
 main .List tbody .tr td:last-child {
     margin-left: auto;
 }
-
-.List tbody #tableTargetBody {
+main .List tbody #tableTargetBody {
+    display: none;
     padding: 5px;
+    word-break: break-all;
 }
-
-#trashButton {
+main .List tbody #tableTargetBody.open {
+    display: block;
+}
+main .List tbody .tr td:last-child i {
+    transition: transform 0.2s;
+}
+main .List tbody .tr td:last-child.open i {
+    transform: rotateX(180deg);
+}
+.List tbody .tr td form button #trashButton {
     color: #dfe2d2;
+    vertical-align: bottom;
+    margin-bottom: 1px;
+}
+#restoreIcon {
+    font-size: 1.2rem;
+    color: #dfe2d2;
+    vertical-align: bottom;
+    margin-bottom: 2px;
+}
+main .zeroText {
+    background-color: #323339;
+    color: #dfe2d2;
+    margin: 100px 0 50px 50px;
+    width: 50%;
+    padding: 10px 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    font-size: 1.175rem;
+    user-select: none;
+    line-height: 1.2;
 }
 
 #mask {
