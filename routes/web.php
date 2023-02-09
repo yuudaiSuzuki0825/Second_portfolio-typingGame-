@@ -22,7 +22,11 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// エラーメッセージの代わりにトップページにリダイレクトさせている。
+Route::get('/text', [TextController::class, 'notFound'])->name('text.notFound');
 Route::resource('/text', 'App\Http\Controllers\TextController', ['only' => ['store', 'destroy']]);
+// エラーメッセージの代わりにトップページにリダイレクトさせている。また，「Route::get('text/deleteList',」とuriが被ってしまうのを防ぐために{id}は数値のみ受け付けるようにした。
+Route::get('text/{id}', [TextController::class, 'notFound'])->name('text.notFound')->where('id', '[0-9]+');
 Route::patch('text/{id}', [TextController::class, 'checked'])->name('text.checked');
 Route::patch('text/{id}/unchecked', [TextController::class, 'unchecked'])->name('text.unchecked');
 Route::get('text/deleteList', [TextController::class, 'deleteList'])->name('text.deleteList');

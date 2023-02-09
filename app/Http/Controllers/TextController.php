@@ -92,9 +92,14 @@ class TextController extends Controller
         return redirect('/');
     }
 
+    public function notFound()
+    {
+        return redirect('/');
+    }
+
     public function checked($id)
     {
-        $text = Auth()->user()->texts()->find($id);
+        $text = Auth()->user()->texts()->findOrFail($id);
         $text->checked = $this->checked;
         $text->save();
         return redirect('/');
@@ -102,7 +107,7 @@ class TextController extends Controller
 
     public function unchecked($id)
     {
-        $text = Auth()->user()->texts()->find($id);
+        $text = Auth()->user()->texts()->findOrFail($id);
         $text->checked = null;
         $text->save();
         return redirect('/');
