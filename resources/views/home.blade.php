@@ -47,7 +47,10 @@
             </ul>
         @endif
         @if (session()->has('ok'))
-            <div id="successMeg"><i class="fa-regular fa-circle-check"></i><br><br>Good job!<br>{{ session('ok') }}</div>
+            <div id="successMsg"><i class="fa-regular fa-circle-check"></i><br><br>Good job!<br>{{ session('ok') }}</div>
+        @endif
+        @if (session()->has('NG'))
+            <div id="ngMsg"><i class="fa-solid fa-triangle-exclamation"></i><br><br>Error!<br>{{ session('NG') }}</div>
         @endif
 
         <div class="typingTable">
