@@ -185,4 +185,29 @@
     /* =================================================== */
     // 「GoodJob」通知のアニメーション。
     /* =================================================== */
+
+    const fadeOut1 = () => {
+        if (!successMsg) {
+            return;
+        }
+        successMsg.classList.add("fadeOut");
+    };
+    const fadeOut2 = () => {
+        if (!errorMsg) {
+            return;
+        }
+        errorMsg.classList.add("fadeOut");
+    };
+    const fadeOut3 = () => {
+        if (!ngMsg) {
+            return;
+        }
+        ngMsg.classList.add("fadeOut");
+    };
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+    const ngMsg = document.getElementById("ngMsg");
+    setTimeout(fadeOut1, 2500);
+    setTimeout(fadeOut2, 2500);
+    setTimeout(fadeOut3, 2500);
 }

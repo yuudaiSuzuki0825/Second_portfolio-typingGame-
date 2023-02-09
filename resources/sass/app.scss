@@ -246,7 +246,7 @@ main .container div form div .loginButton button {
 // エラーメッセージやサクセスメッセージなど…
 main #errorMsg {
     // ポジショニング。
-    position: absolute;
+    position: fixed;
     top: 20px;
     // leftとrightを0に，widthを絶対値指定した上でmarginの左右をautoにすると，中央寄せになる。
     left: 0;
@@ -268,11 +268,18 @@ main #errorMsg {
     border-radius: 4px;
     // 要素の重なりを一番上にしている。
     z-index: 1000;
+    // イージング。
+    transition: opacity 0.3s;
 }
-
-main #successMeg {
+main #errorMsg.fadeOut {
+    // 完全透明にし，範囲選択を禁止にし，クリックできないようにしている。
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+main #successMsg {
     // ポジショニング。
-    position: absolute;
+    position: fixed;
     top: 20px;
     // leftとrightを0に，widthを絶対値指定した上でmarginの左右をautoにすると，中央寄せになる。
     left: 0;
@@ -295,9 +302,42 @@ main #successMeg {
     // 要素の重なりを一番上にしている。
     z-index: 1000;
     // イージング。
-    transition: all 0.3s;
+    transition: opacity 0.3s;
 }
 main #successMsg.fadeOut {
+    // 完全透明にし，範囲選択を禁止にし，クリックできないようにしている。
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+main #ngMsg {
+    // ポジショニング。
+    position: fixed;
+    top: 20px;
+    // leftとrightを0に，widthを絶対値指定した上でmarginの左右をautoにすると，中央寄せになる。
+    left: 0;
+    right: 0;
+    // 横幅指定。
+    width: 500px;
+    // 内側の余白指定。
+    padding: 10px 10px;
+    // 中央寄せ。
+    margin: 0 auto;
+    // フォントサイズ指定。
+    font-size: 1.375rem;
+    // テキストを中央揃えにしている。
+    text-align: center;
+    // 色指定。
+    color: #fff;
+    background-color: #e74c3c;
+    // 角丸指定。
+    border-radius: 4px;
+    // 要素の重なりを一番上にしている。
+    z-index: 1000;
+    // イージング。
+    transition: opacity 0.3s;
+}
+main #ngMsg.fadeOut {
     // 完全透明にし，範囲選択を禁止にし，クリックできないようにしている。
     opacity: 0;
     pointer-events: none;

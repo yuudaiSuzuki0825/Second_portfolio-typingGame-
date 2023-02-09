@@ -213,7 +213,7 @@ main .container div form div .loginButton button {
 }
 
 main #errorMsg {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 0;
   right: 0;
@@ -226,10 +226,19 @@ main #errorMsg {
   background-color: #e74c3c;
   border-radius: 4px;
   z-index: 1000;
+  transition: opacity 0.3s;
 }
 
-main #successMeg {
-  position: absolute;
+main #errorMsg.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+main #successMsg {
+  position: fixed;
   top: 20px;
   left: 0;
   right: 0;
@@ -242,10 +251,35 @@ main #successMeg {
   background-color: #00a690;
   border-radius: 4px;
   z-index: 1000;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 main #successMsg.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+main #ngMsg {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  right: 0;
+  width: 500px;
+  padding: 10px 10px;
+  margin: 0 auto;
+  font-size: 1.375rem;
+  text-align: center;
+  color: #fff;
+  background-color: #e74c3c;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+
+main #ngMsg.fadeOut {
   opacity: 0;
   pointer-events: none;
   -webkit-user-select: none;

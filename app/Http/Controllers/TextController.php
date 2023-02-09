@@ -33,6 +33,14 @@ class TextController extends Controller
             // 'body' => ['required', 'max:500', new alpha_num_check()],
         // ]);
 
+        $user = Auth()->user();
+        $texts = $user->texts;
+
+        if ($texts->count() >= 15) {
+            session()->flash('NG', '上限数（15件）を超えて保存できません。');
+            return redirect('/');
+        }
+
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'max:255'],
             'body' => ['required', 'max:500', new alpha_num_check()],
