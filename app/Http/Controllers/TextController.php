@@ -42,7 +42,7 @@ class TextController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title' => ['required', 'max:255'],
+            'title' => ['required', 'max:50'],
             'body' => ['required', 'max:500', new alpha_num_check()],
         ]);
 
@@ -65,18 +65,6 @@ class TextController extends Controller
 
             return redirect('/');
         }
-
-        // $text = new Text;
-
-        // $text->create([
-        //     'title' => $request->title,
-        //     'body' => $request->body,
-        //     'user_id' => Auth()->user()->id,
-        // ]);
-
-        // session()->flash('ok', '正常に動作しました。');
-
-        // return redirect('/');
     }
 
     /**
@@ -92,9 +80,15 @@ class TextController extends Controller
         return redirect('/');
     }
 
+    public function notFound()
+    {
+        // return redirect('/');
+        return abort(404);
+    }
+
     public function checked($id)
     {
-        $text = Auth()->user()->texts()->find($id);
+        $text = Auth()->user()->texts()->findOrFail($id);
         $text->checked = $this->checked;
         $text->save();
         return redirect('/');
@@ -102,7 +96,7 @@ class TextController extends Controller
 
     public function unchecked($id)
     {
-        $text = Auth()->user()->texts()->find($id);
+        $text = Auth()->user()->texts()->findOrFail($id);
         $text->checked = null;
         $text->save();
         return redirect('/');
@@ -119,7 +113,15 @@ class TextController extends Controller
 
     public function restore(Text $text)
     {
+
+        // 上限数を超えて復元できないようにするため。
         $user = Auth()->user();
+        $texts = $user->texts;
+        if ($texts->count() >= 15) {
+            session()->flash('NG', '上限数（15件）を超えて保存・復元できません。');
+            return redirect('/');
+        }
+
         $user->texts()->onlyTrashed()->where('id', $text->id)->restore();
         return redirect('/text/deleteList');
     }
