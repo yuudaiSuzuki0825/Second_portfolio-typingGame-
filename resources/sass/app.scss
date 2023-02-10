@@ -318,7 +318,7 @@ main #ngMsg {
     left: 0;
     right: 0;
     // 横幅指定。
-    width: 500px;
+    width: 520px;
     // 内側の余白指定。
     padding: 10px 10px;
     // 中央寄せ。
@@ -438,6 +438,9 @@ main .List tbody .tr {
 }
 main .List tbody .tr td:first-child {
     margin-right: 5px;
+}
+main .List tbody .tr td:nth-of-type(3) {
+    margin-left: 5px;
 }
 main .List tbody .tr td:last-child {
     margin-left: auto;

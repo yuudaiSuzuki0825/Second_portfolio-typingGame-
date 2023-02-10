@@ -267,7 +267,7 @@ main #ngMsg {
   top: 20px;
   left: 0;
   right: 0;
-  width: 500px;
+  width: 520px;
   padding: 10px 10px;
   margin: 0 auto;
   font-size: 1.375rem;
@@ -397,6 +397,10 @@ main .List tbody .tr {
 
 main .List tbody .tr td:first-child {
   margin-right: 5px;
+}
+
+main .List tbody .tr td:nth-of-type(3) {
+  margin-left: 5px;
 }
 
 main .List tbody .tr td:last-child {
