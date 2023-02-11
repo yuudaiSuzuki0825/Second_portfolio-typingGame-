@@ -59,7 +59,7 @@
                 <button id="startButton"><i class="fa-regular fa-circle-play"></i></button>
             </div>
             <div>
-                <button id="questionButton"><i class="fa-regular fa-circle-question"></i></button>
+                <a id="questionButton" href="{{ route('question') }}"><i class="fa-regular fa-circle-question"></i></a>
             </div>
             <div>
                 <a id="deleteListButton" href="{{ route('text.deleteList') }}"><i class="fa-solid fa-bars-staggered"></i></a>
