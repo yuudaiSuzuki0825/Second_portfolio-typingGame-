@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // コントローラーとの連携。Laravel6には必要なかった。
 use App\Http\Controllers\TextController;
+use App\Http\Controllers\HomeController;
 
 // modelとの連携。
 use App\Models\Text;
@@ -20,8 +21,8 @@ use App\Models\Text;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 // エラーメッセージの代わりにトップページにリダイレクトさせている（/textに対してpostやdeleteメソッドを出すルーティングを下部に記載している関係で，この記述を入れないとエラー画面をユーザーに見せてしまう）。
 Route::get('/text', [TextController::class, 'notFound'])->name('text.notFound');
 Route::resource('/text', 'App\Http\Controllers\TextController', ['only' => ['store', 'destroy']]);
@@ -36,3 +37,4 @@ Route::get('text/deleteList', [TextController::class, 'deleteList'])->name('text
 Route::get('/text/deleteList/{text}', [TextController::class, 'notFound'])->name('text.notFound');
 Route::patch('text/deleteList/{trashed_text}', [TextController::class, 'restore'])->name('text.restore');
 Route::delete('text/deleteList/{trashed_text}', [TextController::class, 'forceDelete'])->name('text.forceDelete');
+Route::get('/question', [HomeController::class, 'question'])->name('question');

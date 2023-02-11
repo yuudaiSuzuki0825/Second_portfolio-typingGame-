@@ -421,7 +421,8 @@ table {
     user-select: none;
     line-height: 1.2;
 }
-.List.trashedList {
+.List.trashedList,
+.List.questionList {
     margin-top: 100px;
 }
 main .List thead tr {
@@ -461,14 +462,10 @@ main .List tbody .tr td:last-child.open i {
 }
 .List tbody .tr td form button #trashButton {
     color: #dfe2d2;
-    vertical-align: bottom;
-    margin-bottom: 1px;
 }
 #restoreIcon {
     font-size: 1.2rem;
     color: #dfe2d2;
-    vertical-align: bottom;
-    margin-bottom: 2px;
 }
 main .zeroText {
     background-color: #323339;
