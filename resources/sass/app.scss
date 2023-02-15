@@ -33,6 +33,8 @@ header {
     position: fixed;
     top: 0;
     left: 0;
+    box-shadow: 0px 0px 6px -1px #f67474;
+    z-index: 500;
 }
 
 header nav .wrapper {
@@ -248,6 +250,9 @@ main .container div form div .loginButton button {
     color: #dfe2d2;
     border-radius: 4px;
 }
+#sideBar #createButton button:focus {
+    background-color: #00a690;
+}
 // サイドパネル（中身）のコーディングここまで。
 
 // エラーメッセージやサクセスメッセージなど…
@@ -358,13 +363,15 @@ main #ngMsg.fadeOut {
     margin: 100px 0 50px 50px;
     padding: 0 20px;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    border: solid #3e3e3e 1px;
+    // box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    box-shadow: 0px 0px 15px -1px #3e3e3e;
     display: flex;
     align-items: center;
 }
 
 .typingTable h2 {
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 50px;
     user-select: none;
 }
@@ -379,6 +386,7 @@ main #ngMsg.fadeOut {
 #topPageButton {
     font-size: 2rem;
     color: #dfe2d2;
+    cursor: pointer;
 }
 
 #questionButton,
@@ -392,7 +400,7 @@ main #ngMsg.fadeOut {
     top: 200px;
     left: 0;
     right: 0;
-    width: 500px;
+    width: 850px;
     margin: 0 auto;
     padding: 10px 20px;
     z-index: 100;
@@ -423,7 +431,9 @@ table {
     width: 50%;
     padding: 10px 10px;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    border: solid #3e3e3e 1px;
+    // box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    box-shadow: 0px 0px 15px -1px #3e3e3e;
     font-size: 1.175rem;
     user-select: none;
     line-height: 1.2;
@@ -477,14 +487,20 @@ main .List tbody .tr td:last-child.open i {
 main .zeroText {
     background-color: #323339;
     color: #dfe2d2;
-    margin: 100px 0 50px 50px;
+    margin: 50px 0 50px 50px;
     width: 50%;
     padding: 10px 10px;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    border: solid #3e3e3e 1px;
+    // box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    box-shadow: 0px 0px 15px -1px #3e3e3e;
     font-size: 1.175rem;
     user-select: none;
     line-height: 1.2;
+}
+
+main .zeroText.trashedList {
+    margin-top: 100px;
 }
 
 #mask {
@@ -501,6 +517,58 @@ main .zeroText {
 }
 #mask.hidden {
     display: none;
+}
+
+// ツールチップここから。
+// ツールチップ（spanタグ）の親要素の指定。
+.parent-balloon {
+    // ポジショニングのため。
+    position: relative;
+}
+.parent-balloon .balloon {
+    // ポジショニング。
+    position: absolute;
+    top: -30px;
+    left: -15px;
+    // 通常時は非表示。
+    display: none;
+    // 内側の余白指定。
+    padding: 0 7px;
+    text-align: center;
+    line-height: 1.5;
+    // 文字間の隙間の指定。
+    letter-spacing: normal;
+    // 色指定。
+    color: #323339;
+    background-color: #dfe2d2;
+    // 角丸指定。
+    border-radius: 5px;
+    // 影指定。
+    // box-shadow: 2px 2px 2px 1px #3e3e3e;
+    box-shadow: 0px 0px 30px -5px #3e3e3e;
+    // クリックなどをできないようにしている。
+    pointer-events: none;
+    font-size: 1.2rem;
+}
+.parent-balloon .balloon::before {
+    // 中身はなし。「▽」の作成と関連。
+    content: "";
+    // ポジショニング。
+    position: absolute;
+    top: 97%;
+    left: 29px;
+    // 以下の指定で「▽」を作成している。「CSS border 三角」で検索。
+    border: 6px solid transparent;
+    border-top: 6px solid #dfe2d2;
+}
+.parent-balloon:hover .balloon {
+    // 非表示➡表示。
+    display: inline-block;
+    // 横幅指定。コメントアウトして確認。文字数に応じてそれぞれ微調整が必要。
+    width: 70px;
+}
+.parent-balloon .balloon.deletedList {
+    width: 120px;
 }
 
 footer p {

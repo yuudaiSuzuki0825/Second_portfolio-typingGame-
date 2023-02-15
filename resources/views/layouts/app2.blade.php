@@ -52,6 +52,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a id="headerQuestionButton" href="{{ route('question') }}">
+                                        <i class="fa-regular fa-circle-question"></i>Q&A
+                                    </a>
+                                </li>
+                                <li>
                                     <!-- ログアウト。 -->
                                     <div>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">

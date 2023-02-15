@@ -27,11 +27,12 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">タイトル</label>
-                    <input type="text" name="title" id="title" placeholder="こちらは日本語入力ができます。">
+                    {{-- old()でエラーが表示されても入力済みのデータは消えなくなった。 --}}
+                    <input type="text" name="title" id="title" placeholder="こちらは日本語入力ができます。" value="{{ old('title') }}">
                 </div>
                 <div class="form-group">
                     <label for="body">本文</label>
-                    <textarea name="body" id="body" cols="30" rows="8" placeholder="半角英数字のみ受け付けます。コロンや半角スペースも受け付けません。"></textarea>
+                    <textarea name="body" id="body" cols="30" rows="8" placeholder="半角英数字のみ受け付けます。コロンや半角スペースも受け付けません。">{{ old('body') }}</textarea>
                 </div>
                 <div class="form-group" id="createButton">
                     <button type="submit">作成
@@ -56,16 +57,16 @@
         <div class="typingTable">
             <h2>Let's Challenge!!</h2>
             <div id="startButtonParent">
-                <button id="startButton"><i class="fa-regular fa-circle-play"></i></button>
+                <a id="startButton" class="parent-balloon"><i class="fa-regular fa-circle-play"></i><span class="balloon">Play</span></a>
             </div>
             <div>
-                <a id="questionButton" href="{{ route('question') }}"><i class="fa-regular fa-circle-question"></i></a>
+                <a id="questionButton" href="{{ route('question') }}" class="parent-balloon"><i class="fa-regular fa-circle-question"></i><span class="balloon">Q&A</span></a>
             </div>
             <div>
-                <a id="deleteListButton" href="{{ route('text.deleteList') }}"><i class="fa-solid fa-bars-staggered"></i></a>
+                <a id="deleteListButton" href="{{ route('text.deleteList') }}" class="parent-balloon"><i class="fa-solid fa-bars-staggered"></i><span class="balloon deletedList">deletedList</span></a>
             </div>
             <div>
-                <a id="topPageButton" href="{{ route('home') }}"><i class="fa-solid fa-user"></i></a>
+                <a id="topPageButton" href="{{ route('home') }}" class="parent-balloon"><i class="fa-solid fa-user"></i><span class="balloon">Home</span></a>
             </div>
         </div>
         <div id="typingModalWindow" class="hidden">
