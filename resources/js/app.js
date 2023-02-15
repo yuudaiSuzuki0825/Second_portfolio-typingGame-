@@ -183,31 +183,106 @@
     });
 
     /* =================================================== */
-    // 「GoodJob」通知のアニメーション。
+    // 「GoodJob」通知のアニメーションなど…。
     /* =================================================== */
 
-    const fadeOut1 = () => {
-        if (!successMsg) {
+    // 関数の定義。
+    const fadeOut = () => {
+        // 早期リターン。念のため。
+        if (!successMsg && !errorMsg && !ngMsg) {
             return;
         }
-        successMsg.classList.add("fadeOut");
-    };
-    const fadeOut2 = () => {
-        if (!errorMsg) {
-            return;
+        // GoodJobメッセージの場合。
+        if (successMsg && !errorMsg && !ngMsg) {
+            successMsg.classList.add("fadeOut");
+            // エラーメッセージの場合。
+        } else if (!successMsg && errorMsg && !ngMsg) {
+            errorMsg.classList.add("fadeOut");
+            // NGメッセージ（上限数を超えて保存）の場合。
+        } else if (!successMsg && !errorMsg && ngMsg) {
+            ngMsg.classList.add("fadeOut");
         }
-        errorMsg.classList.add("fadeOut");
     };
-    const fadeOut3 = () => {
-        if (!ngMsg) {
-            return;
-        }
-        ngMsg.classList.add("fadeOut");
-    };
+
+    /* DOM操作。*/
     const successMsg = document.getElementById("successMsg");
     const errorMsg = document.getElementById("errorMsg");
     const ngMsg = document.getElementById("ngMsg");
-    setTimeout(fadeOut1, 2500);
-    setTimeout(fadeOut2, 2500);
-    setTimeout(fadeOut3, 2500);
+
+    // 2.5秒後にfadeOut()が実行される。
+    setTimeout(fadeOut, 2500);
+
+    /* =================================================== */
+    // カーソルキー移動。
+    /* =================================================== */
+
+    const title = document.getElementById("title");
+    const body = document.getElementById("body");
+    const createButton = document.querySelector("#createButton button");
+    const checkboxLabel = document.querySelector("#checkboxLabel");
+
+    let flg = false;
+
+    checkboxLabel.addEventListener("click", () => {
+        title.focus();
+        title.setSelectionRange(title.value.length, title.value.length);
+    });
+
+    title.addEventListener("keydown", (e) => {
+        if (
+            e.code == "ArrowDown" &&
+            title.selectionStart == title.value.length
+        ) {
+            flg = true;
+        }
+    });
+
+    title.addEventListener("keyup", (e) => {
+        if (e.code == "ArrowDown" && flg) {
+            flg = false;
+            body.focus();
+            body.setSelectionRange(body.value.length, body.value.length);
+        }
+    });
+
+    body.addEventListener("keydown", (e) => {
+        if (e.code == "ArrowUp" && body.selectionStart == 0) {
+            flg = true;
+        }
+    });
+
+    body.addEventListener("keyup", (e) => {
+        if (e.code == "ArrowUp" && flg) {
+            flg = false;
+            title.focus();
+            title.setSelectionRange(title.value.length, title.value.length);
+        }
+    });
+
+    body.addEventListener("keydown", (e) => {
+        if (e.code == "ArrowDown" && body.selectionStart == body.value.length) {
+            flg = true;
+        }
+    });
+
+    body.addEventListener("keyup", (e) => {
+        if (e.code == "ArrowDown" && flg) {
+            flg = false;
+            createButton.focus();
+        }
+    });
+
+    createButton.addEventListener("keydown", (e) => {
+        if (e.code == "ArrowUp") {
+            flg = true;
+        }
+    });
+
+    createButton.addEventListener("keyup", (e) => {
+        if (e.code == "ArrowUp" && flg) {
+            flg = false;
+            body.focus();
+            body.setSelectionRange(body.value.length, body.value.length);
+        }
+    });
 }

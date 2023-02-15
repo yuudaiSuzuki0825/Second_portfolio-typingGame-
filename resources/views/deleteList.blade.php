@@ -27,11 +27,11 @@
                 @csrf
                 <div>
                     <label for="title">タイトル</label>
-                    <input type="text" name="title" id="title" placeholder="こちらは日本語入力ができます。">
+                    <input type="text" name="title" id="title" placeholder="こちらは日本語入力ができます。" value="{{ old('title') }}">
                 </div>
                 <div>
                     <label for="body">本文</label>
-                    <textarea name="body" id="body" cols="30" rows="8" placeholder="半角英数字のみ受け付けます。コロンや半角スペースも受け付けません。"></textarea>
+                    <textarea name="body" id="body" cols="30" rows="8" placeholder="半角英数字のみ受け付けます。コロンや半角スペースも受け付けません。">{{ old('body') }}</textarea>
                 </div>
                 <div id="createButton">
                     <button type="submit">作成
@@ -82,7 +82,7 @@
                 @endforeach
             </table>
         @else
-        <p class="zeroText">最近削除した文書はありません。</p>
+        <p class="zeroText trashedList">最近削除した文書はありません。</p>
         @endif
 
         <!-- マスク部分。モーダルウィンドウで必要。 -->

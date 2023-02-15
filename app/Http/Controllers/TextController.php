@@ -75,6 +75,14 @@ class TextController extends Controller
      */
     public function destroy(Text $text)
     {
+        $user = Auth()->user();
+        $trashedTexts = $user->texts()->onlyTrashed()->get();
+
+        if ($trashedTexts->count() >= 15) {
+            session()->flash('NG', '最近削除した項目が満杯です（上限数は15件）。');
+            return redirect('/');
+        }
+
         $text->delete();
 
         return redirect('/');
