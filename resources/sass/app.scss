@@ -3,21 +3,26 @@
 html {
     // ここで100%と指定し，各タグではremを使ってfont-sizeの調整を行うこと。
     font-size: 100%;
+    // 色指定。
     color: #323339;
 }
 
 body {
     // コーディングしやすくするために行間を1にしておいた。
     line-height: 1;
-    // height: 100vh;が効かない場合（スクロールすると背景が切れる問題）の対処法↓
+    // height: 100vh;が効かない場合（スクロールすると背景が切れる問題）の対処法としてmin-heightを使用した。
     min-height: 100vh;
+    // 背景画像の指定。
     background-image: url(../img/フリー素材_イタリア_山脈.jpg);
+    // 背景画像のサイズ指定など…。
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 a {
+    // リンクの下線を消している。
     text-decoration: none;
+    // 色指定。
     color: #dfe2d2;
 }
 
@@ -29,11 +34,15 @@ ul {
 header {
     // ヘッダーの背景色を指定。
     background-color: #f26968;
+    // 横幅指定。
     width: 100%;
+    // スクロールしても上部にヘッダーを固定するため。
     position: fixed;
     top: 0;
     left: 0;
+    // 影の指定。ジェネレーターを使用して作った方が早い。
     box-shadow: 0px 0px 6px -1px #f67474;
+    // 要素同士が重なった際にヘッダー部分が上部に被さるようにするため。
     z-index: 500;
 }
 
@@ -54,6 +63,7 @@ header nav .wrapper {
 header nav .wrapper h1 {
     // 行間の指定。サイトメニューの側もこれに合う形になる。
     line-height: 50px;
+    // 範囲選択などをできないようにしている。
     user-select: none;
 }
 
@@ -77,6 +87,7 @@ header nav .wrapper .headerSiteMenu ul li + li {
     margin-left: 15px;
 }
 
+// ヘッダー部分のアイコンの位置の微調整。
 header nav .wrapper .headerSiteMenu ul li i {
     margin-right: 5px;
 }
