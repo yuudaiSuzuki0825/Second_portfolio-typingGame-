@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html {
-    // ここで100%と指定し，各タグではremを使ってfont-sizeの調整を行うこと。
+    // ここで100%と指定し，各タグではremを使ってfont-sizeの調整を行っている。
     font-size: 100%;
     // 色指定。
     color: #323339;
@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     // 背景画像の指定。
     background-image: url(../img/フリー素材_イタリア_山脈.jpg);
-    // 背景画像のサイズ指定など…。
+    // 背景画像のサイズ指定とその画像を反復表示するかどうかの指定。
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -44,53 +44,56 @@ header {
     box-shadow: 0px 0px 6px -1px #f67474;
     // 要素同士が重なった際にヘッダー部分が上部に被さるようにするため。
     z-index: 500;
+
+    nav .wrapper {
+        // 最大幅を指定している。これ以上大きくならない。
+        width: 1400px;
+        // ウィンドウ幅に対して95%分の範囲が横幅になる。
+        // widthで最大幅，max-widthで最大％を指定することで，
+        // 例えばウィンドウ幅の95%分の長さが1400pxを超えた場合，横幅は1400pxとなり超過分はmarginになる。
+        // 例えばウィンドウ幅の95%分の長さが1400pxを下回る場合，その95%分の値が横幅になる。
+        max-width: 95%;
+        // 中央寄せ。
+        margin: 0 auto;
+        // フレックス。
+        display: flex;
+
+        h1 {
+            // 行間の指定。サイトメニューの側もこれに合う形になる。
+            line-height: 50px;
+            // 範囲選択などをできないようにしている。
+            user-select: none;
+        }
+
+        .headerSiteMenu {
+            // marginのleftをautoにしつつ，rightを0にすると取り得る全ての余白がmargin-leftに割り振られる。
+            margin-left: auto;
+
+            ul {
+                // フレックス。
+                display: flex;
+                // 行間の指定。h1と同じ値。align-itemsを有効にするためでもある。
+                line-height: 50px;
+                // サイトメニューの各項目を縦軸に対して中央揃えにしている。
+                align-items: center;
+                // 範囲選択などをできないようにしている。
+                user-select: none;
+
+                li + li {
+                    // 隣接結合。サイドメニューの各項目の余白を作成している。
+                    margin-left: 15px;
+                }
+
+                li i {
+                    // ヘッダー部分のアイコンの位置の微調整。
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
 }
 
-header nav .wrapper {
-    // 最大幅を指定している。これ以上大きくならない。
-    width: 1400px;
-    // ウィンドウ幅に対して95%分の範囲が横幅になる。
-    // widthで最大幅，max-widthで最大％を指定することで，
-    // 例えばウィンドウ幅の95%分の長さが1400pxを超えた場合，横幅は1400pxとなり超過分はmarginになる。
-    // 例えばウィンドウ幅の95%分の長さが1400pxを下回る場合，その95%分の値が横幅になる。
-    max-width: 95%;
-    // 中央寄せ。
-    margin: 0 auto;
-    // フレックス。
-    display: flex;
-}
-
-header nav .wrapper h1 {
-    // 行間の指定。サイトメニューの側もこれに合う形になる。
-    line-height: 50px;
-    // 範囲選択などをできないようにしている。
-    user-select: none;
-}
-
-header nav .wrapper .headerSiteMenu {
-    // marginのleftをautoにしつつ，rightを0にすると取り得る全ての余白がmargin-leftに割り振られる。
-    margin-left: auto;
-}
-
-header nav .wrapper .headerSiteMenu ul {
-    // フレックス。
-    display: flex;
-    // 行間の指定。h1と同じ値。align-itemsを有効にするためでもある。
-    line-height: 50px;
-    // サイトメニューの各項目を縦軸に対して中央揃えにしている。
-    align-items: center;
-    user-select: none;
-}
-
-// 隣接結合。サイドメニューの各項目の余白を作成している。
-header nav .wrapper .headerSiteMenu ul li + li {
-    margin-left: 15px;
-}
-
-// ヘッダー部分のアイコンの位置の微調整。
-header nav .wrapper .headerSiteMenu ul li i {
-    margin-right: 5px;
-}
+// ここまでSCSS変換完了。
 
 main .container {
     // ポジショニング。
@@ -170,62 +173,88 @@ main .container div form div .loginButton button {
     color: #dfe2d2;
 }
 
-// サイドパネルのコーディングここから。
 #checkbox {
+    // チェックボックス形式のinputを作成したが，本体の方はnoneにしている。
+    // これと紐づいているlabelの方のみ利用するため。#checkboxLabelを参照。
     display: none;
 }
 
+// サイドパネル開閉ボタンのコーディング。
 #checkboxLabel {
+    // ポジショニング。スクロールしても固定表示するためにfixedを使用した（試しにabsoluteにして挙動を確認してほしい）。
     position: fixed;
+    // 位置指定。
     top: 200px;
     right: 0;
-    transition: all 0.5s;
+    // イージングを指定。以下の指定をコメントアウトして挙動を確認してほしい。#checkbox:checked ~ #checkboxLabel{}のright指定と関連。
+    transition: right 0.5s;
+    // 色指定。
     background: #dfe2d2;
     color: #323339;
+    // 角丸指定。
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    // 境界線の指定。
     border: #3e3e3e solid 1px;
     border-right: none;
-    // box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    // 影指定。ジェネレーターを使用。
     box-shadow: 0px 0px 15px -1px #3e3e3e;
 }
 
+// サイドパネル開閉ボタンのアイコンのコーディング。
 #checkboxLabel i {
+    // 16×2=32px。
     font-size: 2rem;
+    // 行間指定。
     line-height: 40px;
-    color: #dfe2d2;
+    // 色指定。
     color: #323339;
-    transition: all 0.5s;
+    // イージング指定。#checkbox:checked ~ #checkboxLabel i{}のtransformと関連。
+    transition: transform 0.5s;
 }
 
+// サイドパネル本体のコーディング。
 #sideBar {
-    background-color: #dfe2d2;
+    // ポジショニング。fixedにしないとスクロール時に固定表示されない。absoluteに変えて挙動を確認してほしい。
     position: fixed;
+    // 位置指定。
     top: 100px;
     right: -400px;
+    // 横幅指定。
     width: 400px;
+    // 縦幅指定。
     height: 400px;
+    // 色指定。
+    background-color: #dfe2d2;
+    // 角丸指定。
     border-top-left-radius: 5%;
     border-bottom-left-radius: 5%;
+    // 境界線指定。
     border: #3e3e3e solid 1px;
-    // box-shadow: 1px 1px 1px #3e3e3e, 0 0 1px 1px #3e3e3e;
+    // 影指定。ジェネレーターを使用。
     box-shadow: 0px 0px 15px -1px #3e3e3e;
-    /* イージング。 */
-    transition: all 0.5s;
+    // イージング指定。#checkbox:checked ~ #sideBar{}と関連。
+    transition: right 0.5s;
 }
 
+// チェックボックス形式のinputタグ（正確にはそのタグに紐づけられているlabel部分，すなわちサイドパネル開閉ボタン）がクリックされるとcheckedが付与される。
+// デフォルトでcheckedはついている状態にしている。home.blade.phpを参照。
+// rightの値が-400pxから0pxに変化する。その変化スピードをtransitionで制御している。
 #checkbox:checked ~ #sideBar {
     right: 0;
 }
 
+// rightの値が0pxから400pxに変化する。その変化スピードをtransitionで制御している。
 #checkbox:checked ~ #checkboxLabel {
     right: 400px;
 }
 
+// サイドパネル開閉ボタンのアイコンを回転させている。その変化スピードをtransitionで制御している。
 #checkbox:checked ~ #checkboxLabel i {
     transform: rotate(180deg);
 }
-// サイドパネルのコーディングここまで。
+
+// ここからコメント残しスタート。
 
 // サイドパネル（中身）のコーディングここから。
 #sideBar form {

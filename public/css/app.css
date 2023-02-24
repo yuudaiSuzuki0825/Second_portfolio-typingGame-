@@ -30,25 +30,21 @@ header {
   box-shadow: 0px 0px 6px -1px #f67474;
   z-index: 500;
 }
-
 header nav .wrapper {
   width: 1400px;
   max-width: 95%;
   margin: 0 auto;
   display: flex;
 }
-
 header nav .wrapper h1 {
   line-height: 50px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
-
 header nav .wrapper .headerSiteMenu {
   margin-left: auto;
 }
-
 header nav .wrapper .headerSiteMenu ul {
   display: flex;
   line-height: 50px;
@@ -57,11 +53,9 @@ header nav .wrapper .headerSiteMenu ul {
      -moz-user-select: none;
           user-select: none;
 }
-
 header nav .wrapper .headerSiteMenu ul li + li {
   margin-left: 15px;
 }
-
 header nav .wrapper .headerSiteMenu ul li i {
   margin-right: 5px;
 }
@@ -129,7 +123,7 @@ main .container div form div .loginButton button {
   position: fixed;
   top: 200px;
   right: 0;
-  transition: all 0.5s;
+  transition: right 0.5s;
   background: #dfe2d2;
   color: #323339;
   border-top-left-radius: 4px;
@@ -142,24 +136,22 @@ main .container div form div .loginButton button {
 #checkboxLabel i {
   font-size: 2rem;
   line-height: 40px;
-  color: #dfe2d2;
   color: #323339;
-  transition: all 0.5s;
+  transition: transform 0.5s;
 }
 
 #sideBar {
-  background-color: #dfe2d2;
   position: fixed;
   top: 100px;
   right: -400px;
   width: 400px;
   height: 400px;
+  background-color: #dfe2d2;
   border-top-left-radius: 5%;
   border-bottom-left-radius: 5%;
   border: #3e3e3e solid 1px;
   box-shadow: 0px 0px 15px -1px #3e3e3e;
-  /* イージング。 */
-  transition: all 0.5s;
+  transition: right 0.5s;
 }
 
 #checkbox:checked ~ #sideBar {
