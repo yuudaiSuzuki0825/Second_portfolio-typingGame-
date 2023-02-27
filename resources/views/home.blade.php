@@ -41,17 +41,17 @@
             </form>
         </aside>
         @if ($errors->any())
-            <ul id="errorMsg"><i class="fa-solid fa-triangle-exclamation"></i><br><br>Error!<br>
+            <ul id="errorMsg"><i class="fa-solid fa-triangle-exclamation" id="MsgIcon"></i><br><br>Error!<br>
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
                 @endforeach
             </ul>
         @endif
         @if (session()->has('ok'))
-            <div id="successMsg"><i class="fa-regular fa-circle-check"></i><br><br>Good job!<br>{{ session('ok') }}</div>
+            <div id="successMsg"><i class="fa-regular fa-circle-check" id="MsgIcon"></i><br><br>Good job!<br>{{ session('ok') }}</div>
         @endif
         @if (session()->has('NG'))
-            <div id="ngMsg"><i class="fa-solid fa-triangle-exclamation"></i><br><br>Error!<br>{{ session('NG') }}</div>
+            <div id="ngMsg"><i class="fa-solid fa-triangle-exclamation" id="MsgIcon"></i><br><br>Error!<br>{{ session('NG') }}</div>
         @endif
 
         <div class="typingTable">
