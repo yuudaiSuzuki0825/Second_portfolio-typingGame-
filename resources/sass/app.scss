@@ -118,7 +118,7 @@ main .container {
 
 main .container h2 {
     // 外側の余白指定。
-    margin: 10px 0 15px;
+    margin: 10px 0 20px;
     // テキストを中央寄せ。
     text-align: center;
 }
@@ -316,8 +316,6 @@ main .container div form div .loginButton button {
 }
 // サイドパネル（中身）のコーディングここまで。
 
-// ここからスタート。
-
 // エラーメッセージやサクセスメッセージなど…
 main #errorMsg {
     // ポジショニング。
@@ -418,6 +416,21 @@ main #ngMsg.fadeOut {
     pointer-events: none;
     user-select: none;
 }
+// 新規文書作成における全てのメッセージアイコンの大きさを調整している。
+main #MsgIcon {
+    font-size: 2rem;
+}
+// 新規登録とログインページのエラーメッセージのコーディング。
+.invalid-feedback strong {
+    // marginを効かせるため。
+    display: block;
+    // 下に余白を作っている。
+    margin-bottom: 5px;
+    // 色指定。
+    color: #e74c3c;
+}
+
+// ここからスタート。
 
 .typingTable {
     background-color: #323339;
