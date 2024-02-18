@@ -13,35 +13,12 @@
     /* タイピングゲーム。 */
     // ==================== //
 
-    // home.blade.phpから$textsを受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
-    // try {
-    //     let texts = [...Laravel.texts];
-    // } catch (e) {
-    //     problems = [
-    //         {
-    //             title: "文書がありません",
-    //             body: "bunnsyogaarimasenn",
-    //         },
-    //     ];
-    // }
-    // // let texts = [...Laravel.texts];
-    // // // 配列の初期化。
-    // let problems = [];
-    // // textsの個数分ループ。オブジェクトリテラルを利用してタイトルと本文のみ抽出している。
-    // for (let i = 0; i < texts.length; i++) {
-    //     const title = texts[i].title;
-    //     const body = texts[i].body;
-    //     problems[i] = { title, body };
-    // }
-    // let problemBodys = [];
-
     // setProblemメソッドの定義。tryとcatchで例外処理を行っている。もし受け取ったtextsが空（文書がない）だった場合はデフォルトの文書を代わりにタイプする仕様にした。
     function setProblem() {
         try {
             // home.blade.phpから$textsを受け取っている。Laravelをtextsの前につけること。スプレッド構文で展開し，新しい配列を作成している。
             let texts = [...Laravel.texts];
-            // // 配列の初期化。
-            // let problems = [];
+
             // textsの個数分ループ。オブジェクトリテラルを利用してタイトルと本文のみ抽出している。
             for (let i = 0; i < texts.length; i++) {
                 const title = texts[i].title;
@@ -49,7 +26,6 @@
                 problems[i] = { title, body };
             }
             let problemBodys = [];
-            // let count = problems.length;
 
             for (let i = 0; i < problems.length; i++) {
                 problemBodys[i] = problems[i].body;
@@ -81,26 +57,6 @@
             loc = 0;
             num++;
         }
-        // let texts = [...Laravel.texts];
-        // // 配列の初期化。
-        // let problems = [];
-        // // textsの個数分ループ。オブジェクトリテラルを利用してタイトルと本文のみ抽出している。
-        // for (let i = 0; i < texts.length; i++) {
-        //     const title = texts[i].title;
-        //     const body = texts[i].body;
-        //     problems[i] = { title, body };
-        // }
-        // let problemBodys = [];
-
-        // for (let i = 0; i < problems.length; i++) {
-        //     problemBodys[i] = problems[i].body;
-        // }
-        // problem = problemBodys.splice(num, 1)[0];
-        // target.textContent =
-        //     problem; /* textContentプロパティはinnerTextプロパティでもOKだが，後者はCSSのスタイルも加味して処理される関係（再フロー）で計算が重くなるので避けるべき。 */
-        // targetTitle.textContent = problems[num].title;
-        // loc = 0;
-        // num++;
     }
 
     // 初期化。以下はグローバル定義にする必要がある。
