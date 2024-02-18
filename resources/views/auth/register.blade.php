@@ -10,7 +10,7 @@
                 @csrf
 
                 <div>
-                    <label for="name" class="form-label">username（任意）</label>
+                    <label for="name" class="form-label">username</label>
 
                     <div>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>

@@ -6,7 +6,6 @@
         <h2>ログイン</h2>
 
         <div>
-            <!-- ? -->
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 

@@ -23,15 +23,6 @@ class TextController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required|max:50',
-        //     'body' => 'required|max:500',
-        // ]);
-
-        // return Validator::make($data, [
-            // 'title' => ['required', 'max:50'],
-            // 'body' => ['required', 'max:500', new alpha_num_check()],
-        // ]);
 
         $user = Auth()->user();
         $texts = $user->texts;
