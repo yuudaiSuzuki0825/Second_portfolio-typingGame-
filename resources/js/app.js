@@ -85,7 +85,6 @@
 
         playing = true;
         setProblem();
-        console.log("hoge1");
     });
 
     document.addEventListener("keydown", (e) => {
@@ -103,7 +102,6 @@
         target.textContent = "".repeat(loc) + problem.substring(loc);
 
         if (loc === problem.length) {
-            console.log(num);
             // numはsetProblem()が呼び出されるたびに1増える。そのnumが文書数と一致するまでカウントされたとき，タイピングを終了させればよい。
             if (num === problems.length) {
                 // 2秒後に再リロード。
@@ -117,7 +115,6 @@
                 return;
             }
 
-            console.log("hoge3");
             setProblem();
         }
     });
@@ -172,11 +169,13 @@
     // カーソルキー移動。
     /* =================================================== */
 
+    /* DOM操作。*/
     const title = document.getElementById("title");
     const body = document.getElementById("body");
     const createButton = document.querySelector("#createButton button");
     const checkboxLabel = document.querySelector("#checkboxLabel");
 
+    /* フラグのセット。 */
     let flg = false;
 
     checkboxLabel.addEventListener("click", () => {
